@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
     }
   }
 
-  .title {
+  .title-input {
     font-size: 32px;
     margin-top: 24px;
 
@@ -33,7 +33,7 @@ export const Wrapper = styled.div`
     }
   }
 
-  .detail {
+  .detail-input {
     margin-top: 16px;
   }
 `;
