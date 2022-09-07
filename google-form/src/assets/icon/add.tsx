@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const add = () => {
   return (
-    <svg
+    <SVG
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -11,8 +12,15 @@ const add = () => {
       className="w-6 h-6"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
+    </SVG>
   );
 };
 
 export default add;
+
+const SVG = styled.svg`
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  margin-right: 10px;
+`;
