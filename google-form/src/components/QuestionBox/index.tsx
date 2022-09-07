@@ -1,22 +1,42 @@
 import { useState } from 'react';
-import { useInput } from '../../hooks';
+import { useAppSelector, useInput } from '../../hooks';
 import Dropdown from '../Dropdown';
 import { Wrapper, useStyles } from './style';
 import { Switch } from '@material-ui/core';
 import { TrashIcon, CopyIcon } from '../../assets';
-import { OptionalQuestion } from '../Question';
+import { OptionalQuestion, NarrativeQuestion } from '../Question';
+import { QUESTION_TYPES } from '../const';
 
 const QuestionBox = () => {
   const classes = useStyles();
   const question = useInput('');
-  const [isNecessary, setIsNeccessary] = useState<boolean>(false);
+  const [isNecessary, setIsNecessary] = useState<boolean>(false);
+  const { type: questionType } = useAppSelector((state) => state.questionReducer);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsNeccessary(e.target.checked);
+    setIsNecessary(e.target.checked);
   };
+
+  const getInput = () => {
+    switch (questionType) {
+      case QUESTION_TYPES.ONE_CHOICE:
+        return <OptionalQuestion type="radio" />;
+      case QUESTION_TYPES.MULTIPLE_CHOICE:
+        return <OptionalQuestion type="check" />;
+      case QUESTION_TYPES.DROP_DOWN:
+        return <OptionalQuestion type="dropdown" />;
+      case QUESTION_TYPES.SHORT_ANSWER:
+        return <NarrativeQuestion type="short" />;
+      case QUESTION_TYPES.LONG_ANSWER:
+        return <NarrativeQuestion type="long" />;
+      default:
+        return;
+    }
+  };
+
   return (
     <Wrapper>
-      <div className="quesiton">
+      <div className="question">
         <input
           className="question-input"
           type="text"
@@ -26,13 +46,13 @@ const QuestionBox = () => {
         />
         <Dropdown />
       </div>
-      <OptionalQuestion type="radio" />
+      {getInput()}
       <hr />
       <div className="settings">
         <CopyIcon />
         <TrashIcon />
         <div className="switch-label">필수</div>
-        <Switch className={classes.colorSecondary} checked={isNecessary} onChange={handleChange}></Switch>
+        <Switch className={classes.colorSecondary} checked={isNecessary} onChange={handleChange} />
       </div>
     </Wrapper>
   );
