@@ -1,8 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { TitleBox } from './components';
 
-function App() {
-  return <div className="App"></div>;
-}
+const App = () => {
+  return (
+    <Wrapper>
+      <TitleBox />
+    </Wrapper>
+  );
+};
 
 export default App;
+
+const Wrapper = styled.div`
+  ${({ theme }) => theme.flexCenter};
+  margin-top: 100px;
+`;
