@@ -4,6 +4,7 @@ import Dropdown from '../Dropdown';
 import { Wrapper, useStyles } from './style';
 import { Switch } from '@material-ui/core';
 import { TrashIcon, CopyIcon } from '../../assets';
+import { OptionalQuestion } from '../Question';
 
 const QuestionBox = () => {
   const classes = useStyles();
@@ -19,12 +20,13 @@ const QuestionBox = () => {
         <input
           className="question-input"
           type="text"
-          placeholder="제목없는 질문"
+          placeholder="질문"
           value={question.value}
           onChange={question.onChange}
         />
         <Dropdown />
       </div>
+      <OptionalQuestion type="radio" />
       <hr />
       <div className="settings">
         <CopyIcon />
